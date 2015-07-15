@@ -65,14 +65,14 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		loginBtn.setOnClickListener(this);
 		rememberBtn.setOnClickListener(this);
 		forgetPassWordBtn.setOnClickListener(this);
-
-		isRemember = SharedPreferencesUtil.getBoolean("isRemember");
-		setRemember();
-
-		if (isRemember) {
-			openActivity(HomePageActivity.class);
-			finish();
-		}
+		
+		//isRemember = SharedPreferencesUtil.getBoolean("isRemember");
+		//setRemember();
+		
+		//if (isRemember) {
+		//	openActivity(HomePageActivity.class);
+		//	finish();
+		//}
 	}
 
 	public void onClick(View v) {

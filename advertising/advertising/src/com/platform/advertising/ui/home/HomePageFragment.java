@@ -13,7 +13,6 @@ import android.widget.ImageView;
 
 /**
  * 首页
- * 
  * @author xiaoping.shan
  *
  */
@@ -54,11 +53,11 @@ public class HomePageFragment extends BaseFragment implements OnClickListener {
 			break;
 		case R.id.linear2:
 			((BaseActivity) getActivity())
-					.openActivity(UploadDataActivity.class);
+					.openActivity(AdvertisingMarketActivity.class);
 			break;
 		case R.id.linear3:
 			((BaseActivity) getActivity())
-					.openActivity(UploadDataActivity.class);
+					.openActivity(FindActivity.class);
 			break;
 		}
 

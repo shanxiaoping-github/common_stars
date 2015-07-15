@@ -30,6 +30,10 @@
         <!-- 完善资料 -->
         <activity android:name=".ui.regist.PerfectActivity" />
         <!-- 忘记密码 -->
+        
+        
+        
+        <activity android:name=".ui.home.FindActivity" />
         <activity android:name=".ui.regist.ForgetPassWord" />
         <activity android:name=".ui.find.FindResultActivity" />
         <activity android:name=".ui.find.CompanyDetailActivity" />
