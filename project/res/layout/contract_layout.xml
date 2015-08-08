@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baseColor"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/title_bar"
+            android:text="联系内容" />
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="@color/emptyColor"
+            android:src="@drawable/top_back_ground" />
+
+        <TextView
+            android:id="@+id/tvSend"
+            style="@style/ordinary_font"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="发送"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    
+    
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/diverGray" />
+
+    <EditText
+        android:id="@+id/edtTitle"
+        style="@style/ordinary_font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="top|left"
+        android:hint="请输入标题"
+        android:lines="1"
+        android:padding="12dp"
+        android:textColor="@color/shallowGray"
+        android:textColorHint="@color/hintColor" >
+    </EditText>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/diverGray" />
+    
+    
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/diverGray" />
+
+    <EditText
+        android:id="@+id/edtContent"
+        style="@style/ordinary_font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="top|left"
+        android:hint="请输入您的联系内容..."
+        android:lines="12"
+        android:padding="12dp"
+        android:textColor="@color/shallowGray"
+        android:textColorHint="@color/hintColor" >
+    </EditText>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/diverGray" />
+
+</LinearLayout>

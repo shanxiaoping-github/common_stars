@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baseColor"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/baseColor"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/set_frament_title"
+                style="@style/title_bar"
+                android:text="个人设置" />
+
+            <TextView
+                android:id="@+id/set_fragment_skip"
+                style="@style/normal_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dip"
+                android:text="修改密码"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/set_fragment_back"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_centerVertical="true"
+                android:background="@color/emptyColor"
+                android:src="@drawable/top_back_ground" />
+
+            <Button
+                android:id="@+id/skip"
+                style="@style/normal_font"
+                android:layout_width="wrap_content"
+                android:layout_height="50dip"
+                android:layout_alignParentRight="true"
+                android:background="@color/emptyColor"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip"
+                android:text="跳过 >"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginTop="5dp"
+            android:background="@color/diverGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <ImageView
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:src="@drawable/personal_ic_sex" />
+
+            <TextView
+                style="@style/ordinary_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="您的性别:"
+                android:textColor="@color/shallowGray" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="1dip"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/set_fragment_sex"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:background="@drawable/personal_switch_womwen_1" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/diverGray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginTop="5dp"
+            android:background="@color/diverGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <ImageView
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:src="@drawable/personal_ic_age" />
+
+            <TextView
+                style="@style/ordinary_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="您的年龄段:"
+                android:textColor="@color/shallowGray" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="1dip"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnAge"
+                style="@style/ordinary_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/emptyColor"
+                android:paddingBottom="5dip"
+                android:paddingLeft="6dip"
+                android:paddingRight="6dip"
+                android:paddingTop="5dip"
+                android:text="请选择年龄"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/diverGray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginTop="5dp"
+            android:background="@color/diverGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <ImageView
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:src="@drawable/personal_ic_occupation" />
+
+            <TextView
+                style="@style/ordinary_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="您的职业:"
+                android:textColor="@color/shallowGray" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="1dip"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnIndustry"
+                style="@style/ordinary_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/emptyColor"
+                android:paddingBottom="5dip"
+                android:paddingLeft="6dip"
+                android:paddingRight="6dip"
+                android:paddingTop="5dip"
+                android:text="请选择职业"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/diverGray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginTop="5dp"
+            android:background="@color/diverGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp" >
+
+            <include
+                android:id="@+id/set_fragment_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginLeft="4dip"
+                layout="@layout/area_layout" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/diverGray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginTop="5dp"
+            android:background="@color/diverGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="12dip" >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/personal_ic_shop" />
+
+            <TextView
+                style="@style/ordinary_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="是否网购过:"
+                android:textColor="@color/shallowGray" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="1dip"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/set_fragment_isnet"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:background="@drawable/personal_switch_no" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/diverGray" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginTop="5dp"
+            android:background="@color/diverGray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dp"
+            android:paddingTop="12dp" >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/personal_ic_marriage" />
+
+            <TextView
+                style="@style/ordinary_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="婚否:"
+                android:textColor="@color/shallowGray" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="1dip"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/set_fragment_ismarry"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:background="@drawable/personal_switch_no" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/diverGray" />
+
+        <LinearLayout
+            android:id="@+id/set_frament_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="35dip"
+            android:background="@drawable/blue_btn_back_ground"
+            android:descendantFocusability="blocksDescendants"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip" >
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="1dip"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="25dip"
+                android:layout_height="25dip"
+                android:src="@drawable/personal_ic_ok" />
+
+            <TextView
+                style="@style/ordinary_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="保存"
+                android:textColor="@color/white" />
+
+            <View
+                android:layout_width="0dip"
+                android:layout_height="1dip"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

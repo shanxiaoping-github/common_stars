@@ -111,7 +111,7 @@ public abstract class BaseActivity extends FragmentActivity implements
 						view.setOnClickListener(this);
 					}
 					try {
-						field.set(this, view);
+						field.set(this,view);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -128,7 +128,6 @@ public abstract class BaseActivity extends FragmentActivity implements
 	public @interface ID {
 		String value();
 	}
-
 	/**
 	 * 设置进度对话框消息
 	 * 

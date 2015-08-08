@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/emptyColor"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:layout_width="25dip"
+        android:layout_height="25dip"
+        android:src="@drawable/product_ic_address" />
+
+    <TextView
+        style="@style/normal_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:text="地区 :"
+        android:textColor="@color/shallowGray" />
+
+    <View
+        android:layout_width="0dip"
+        android:layout_height="1dip"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/area_province"
+            style="@style/normal_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/emptyColor"
+            android:enabled="false"
+            android:hint="省"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:textColorHint="@color/hintColor" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginTop="2dip"
+            android:background="@color/hintColor" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dip"
+        android:layout_height="1dip"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/area_city"
+            style="@style/normal_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/emptyColor"
+            android:enabled="false"
+            android:hint="市"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:textColorHint="@color/hintColor" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginTop="2dip"
+            android:background="@color/hintColor" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dip"
+        android:layout_height="1dip"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/area_area"
+            style="@style/normal_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/emptyColor"
+            android:enabled="false"
+            android:hint="区"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:textColorHint="@color/hintColor" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:layout_marginTop="2dip"
+            android:background="@color/hintColor" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dip"
+        android:layout_height="1dip"
+        android:layout_weight="1" />
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 标题文字 -->
+    <style name="title_font">
+        <item name="android:textSize">20sp</item>
+    </style>
+    <!-- 广告醒目文字 -->
+    <style name="advertising_font">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <!-- 普通文字 -->
+    <style name="ordinary_font">
+        <item name="android:textSize">17sp</item>
+    </style>
+    <!-- 标准文字 -->
+    <style name="normal_font">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <!-- 小文字 -->
+    <style name="small_font">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <!-- 小文字 -->
+    <style name="best_small_font">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+</resources>

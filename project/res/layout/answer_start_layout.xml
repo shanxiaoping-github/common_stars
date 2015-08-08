@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baseColor"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/title_bar"
+            android:text="某某某品牌名称"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dip"
+            android:background="@color/emptyColor"
+            android:src="@drawable/top_back_ground" />
+
+        <TextView
+            android:id="@+id/tvNextAnswer"
+            style="@style/normal_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:text="下一题"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/answerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/title_number"
+            style="@style/normal_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Q1"
+            android:textColor="#FF8800" />
+
+        <TextView
+            style="@style/normal_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" : 请您仔细阅读，并选择合适的答案。"
+            android:textColor="#FF8800" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/ordinary_font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/blue_btn_back_ground"
+        android:padding="10dp"
+        android:text="提交"
+        android:textColor="@color/white" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/submit"
+        android:layout_below="@id/answerLayout"
+        android:layout_marginTop="2dp" />
+
+</RelativeLayout>

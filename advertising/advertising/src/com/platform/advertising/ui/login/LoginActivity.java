@@ -3,6 +3,7 @@ package com.platform.advertising.ui.login;
 import org.json.JSONObject;
 
 import sxp.android.framework.ui.BaseActivity;
+import sxp.android.framework.util.ShowUtil;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -153,6 +154,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			}
 
 			public void handleEmpty() {
+				
 				showProgressDialog("正在登陆...");
 			}
 		});
