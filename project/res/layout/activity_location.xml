@@ -29,20 +29,20 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="16dp"
+        android:background="@color/diverGray"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingBottom="16dp"
-        android:background="@color/diverGray"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="16dp" >
 
         <TextView
+            style="@style/ordinary_font"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="请对您的地址位置进行定位，您就能更多的参与您附近的企业/商户发起的优惠活动及参与广告。"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textColor="@color/shallowGray" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,15 +64,15 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/near_ic_weizhi" />
 
         <TextView
-            style="@style/small_font"
+            style="@style/ordinary_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
+            android:layout_marginLeft="5dip"
             android:text="开始定位"
             android:textColor="@color/white" />
 

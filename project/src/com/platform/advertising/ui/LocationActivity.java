@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.platform.advertising.R;
+import com.platform.advertising.baidu_sdk.LBSActivity;
 import com.platform.advertising.framework.MyBaseActivity;
 
 /**
@@ -17,7 +18,7 @@ public class LocationActivity extends MyBaseActivity implements OnClickListener 
 	@Override
 	protected void layout() {
 		// TODO Auto-generated method stub
-		//setContentView(R.layout.activity_location);
+		// setContentView(R.layout.activity_location);
 		setBackButton();
 		findViewById(R.id.lLocation).setOnClickListener(this);
 	}
@@ -26,8 +27,16 @@ public class LocationActivity extends MyBaseActivity implements OnClickListener 
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.lLocation: // 确认
+			location();
 			break;
 		}
+	}
+
+	/**
+	 * 定位
+	 */
+	private void location() {
+		openActivityResult(LBSActivity.class);
 	}
 
 }

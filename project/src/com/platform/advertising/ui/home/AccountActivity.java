@@ -19,6 +19,7 @@ import com.platform.advertising.R;
 import com.platform.advertising.http.HttpAddAccountClient;
 import com.platform.advertising.http.HttpGetAccountBalanceClient;
 import com.platform.advertising.http.HttpWithdrawalClient;
+import com.platform.advertising.ui.WithdrawalRecordActivity;
 import com.platform.advertising.ui.home.data.Acount;
 import com.platform.advertising.util.SharedPreferencesUtil;
 import com.platform.advertising.util.ShowUtil;
@@ -32,9 +33,9 @@ import com.platform.advertising.util.ShowUtil;
 @LAYOUT(R.layout.account_layout)
 public class AccountActivity extends BaseActivity implements OnClickListener {
 
-	@ID(value = R.id.back,isBindListener = true)
+	@ID(value = R.id.back, isBindListener = true)
 	private ImageButton back;
-	
+
 	@Override
 	protected void layout() {
 		// TODO Auto-generated method stub
@@ -82,14 +83,16 @@ public class AccountActivity extends BaseActivity implements OnClickListener {
 	private TextView zfbAccount;
 
 	private TextView realName;
+
+	private TextView record;
 	private Acount account;
 
 	public void accountDatailLayout(Acount account) {
 		this.account = account;
 		setContentView(R.layout.account_fragment_layout);
-		back = (ImageButton)findViewById(R.id.back);
+		back = (ImageButton) findViewById(R.id.back);
 		back.setOnClickListener(this);
-		
+
 		withdrawal = (TextView) findViewById(R.id.account_fragment_withdrawal);
 		withdrawal.setOnClickListener(this);
 
@@ -100,6 +103,8 @@ public class AccountActivity extends BaseActivity implements OnClickListener {
 		zfbAccount = (TextView) findViewById(R.id.account_fragment_zfb_account);
 
 		realName = (TextView) findViewById(R.id.account_fragment_realname);
+		record = (TextView) findViewById(R.id.record);
+		record.setOnClickListener(this);
 
 		if (StringUtil.isEmpty(account.getBalance())
 				|| account.getBalance().equals("null")) {
@@ -132,7 +137,7 @@ public class AccountActivity extends BaseActivity implements OnClickListener {
 
 	public void accountAddLayout() {
 		setContentView(R.layout.add_account_layout);
-		back = (ImageButton)findViewById(R.id.back);
+		back = (ImageButton) findViewById(R.id.back);
 		back.setOnClickListener(this);
 		name = (EditText) findViewById(R.id.add_account_realname);
 		zhifubao = (EditText) findViewById(R.id.add_account_zhifubao_account);
@@ -153,7 +158,17 @@ public class AccountActivity extends BaseActivity implements OnClickListener {
 			finishBase();
 			break;
 
+		case R.id.record:
+			record();
+			break;
 		}
+	}
+
+	/**
+	 * 体现记录
+	 */
+	private void record() {
+		openActivity(WithdrawalRecordActivity.class);
 	}
 
 	/**
@@ -181,13 +196,14 @@ public class AccountActivity extends BaseActivity implements OnClickListener {
 					// TODO Auto-generated method stub
 					ShowUtil.closeHttpDialog();
 					showShortToast(client.getMessage());
-					if(client.isSuccess()){
+					if (client.isSuccess()) {
 						Acount acount = new Acount();
 						acount.setName(nameStr);
 						acount.setAlipayAccount(zhifubaoStr);
 						acount.setBalance("0");
 						acount.setAmount("0");
-						acount.setUsername(SharedPreferencesUtil.getString("mobile"));
+						acount.setUsername(SharedPreferencesUtil
+								.getString("mobile"));
 						accountDatailLayout(acount);
 					}
 					return false;

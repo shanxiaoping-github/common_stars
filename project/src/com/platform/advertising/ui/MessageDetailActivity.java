@@ -2,6 +2,10 @@ package com.platform.advertising.ui;
 
 import sxp.android.framework.annotation.ID;
 import sxp.android.framework.annotation.LAYOUT;
+import sxp.android.framework.annotation.RESOURE;
+import sxp.android.framework.http.BaseAsynHttpClient;
+import sxp.android.framework.http.BaseAsynHttpClient.AsynHcResponseListener;
+import sxp.android.framework.util.TimeUtil;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,6 +13,9 @@ import android.widget.TextView;
 
 import com.platform.advertising.R;
 import com.platform.advertising.framework.MyBaseActivity;
+import com.platform.advertising.http.HttpMessageReplyClient;
+import com.platform.advertising.ui.data.MessageData;
+import com.platform.advertising.util.ShowUtil;
 
 /**
  * 
@@ -17,42 +24,55 @@ import com.platform.advertising.framework.MyBaseActivity;
 @LAYOUT(R.layout.activity_messagedetail)
 public class MessageDetailActivity extends MyBaseActivity implements
 		OnClickListener {
-	@ID(value=R.id.tvTitle)
-	private TextView tvTitle;
-	
-	@ID(value=R.id.tvContent)
+
+	@ID(value = R.id.message_name)
+	private TextView name;
+
+	@ID(value = R.id.message_title)
+	private TextView title;
+
+	@ID(value = R.id.message_time)
+	private TextView time;
+
+	@ID(value = R.id.message_content)
 	private TextView tvContent;
-	
-	@ID(value = R.id.lReply)
-	private View lReply;
-	
-	@ID(value = R.id.lPhone)
-	private View  lPhone;
-	
-	private String msgId = null;
+
+	@ID(value = R.id.message_reply, isBindListener = true)
+	private TextView relpy;
+
+	@RESOURE("message")
+	private MessageData messageData;
 
 	@Override
 	protected void layout() {
 		// TODO Auto-generated method stub
-		//setContentView(R.layout.activity_messagedetail);
+		// setContentView(R.layout.activity_messagedetail);
 		setBackButton();
-
-		msgId = getIntent().getExtras().getString("id");
-		tvTitle.setText(getIntent().getExtras().getString("title"));
-		tvContent.setText(getIntent().getExtras().getString("content"));
-		lReply.setOnClickListener(this);
-		lPhone.setOnClickListener(this);
+		name.setText(messageData.getSender().getName());
+		title.setText(messageData.getTitle());
+		time.setText(TimeUtil.getInstance().formatLong(
+				messageData.getCreateTime(), TimeUtil.DATE_PATTERN_6));
+		tvContent.setText(messageData.getContent());
 	}
 
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.lReply:
-			Bundle bundle = new Bundle();
-			bundle.putSerializable("originalId", msgId);
-			openActivity(ContractActivity.class, bundle);
+		case R.id.message_reply:
+			replyMessage();
 			break;
 		}
+	}
+
+	/**
+	 * 回复信息
+	 */
+	private void replyMessage() {
+
+		Bundle bundle = new Bundle();
+		bundle.putString("id", messageData.getId());
+		openActivity(MessageReplyActivity.class, bundle);
+
 	}
 
 }

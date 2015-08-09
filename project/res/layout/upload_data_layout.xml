@@ -83,7 +83,8 @@
                 android:background="@drawable/up_bou_off"
                 android:enabled="false"
                 android:text="未上传"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -372,29 +373,17 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" >
-
-                <TextView
-                    android:id="@+id/tvRight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:paddingLeft="15dp"
-                    android:text="跳过"
-                    android:textColor="#888888"
-                    android:textSize="15sp" />
+                android:padding="10dp" >
 
                 <LinearLayout
                     android:id="@+id/lCenter"
                     android:layout_width="100dp"
                     android:layout_height="36dp"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@id/tvRight"
                     android:background="@drawable/up_bou_weizhi_selector"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -415,6 +404,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/desc"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -422,6 +412,19 @@
                     android:text="为让附近的客户找到您，需要您进行GPS定位，您现在的位置将作为您企业的位置"
                     android:textColor="#888888"
                     android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/location"
+                    style="@style/normal_font"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/desc"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toLeftOf="@id/lCenter"
+                    android:text="位置未知"
+                    android:textColor="@color/blue" />
             </RelativeLayout>
 
             <View

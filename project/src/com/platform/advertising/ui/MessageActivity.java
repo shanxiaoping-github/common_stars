@@ -1,9 +1,11 @@
 package com.platform.advertising.ui;
 
+import sxp.android.framework.adapter.BaseAdapter.AdapterItemListener;
 import sxp.android.framework.annotation.ID;
 import sxp.android.framework.annotation.LAYOUT;
 import sxp.android.framework.http.BaseAsynHttpClient;
 import sxp.android.framework.http.BaseAsynHttpClient.AsynHcResponseListener;
+import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
@@ -12,6 +14,7 @@ import com.platform.advertising.R;
 import com.platform.advertising.framework.MyBaseActivity;
 import com.platform.advertising.http.HttpgetMessageListClient;
 import com.platform.advertising.ui.adapter.MessageAdapter;
+import com.platform.advertising.ui.data.MessageData;
 import com.platform.advertising.util.SharedPreferencesUtil;
 
 @LAYOUT(R.layout.activity_message)
@@ -28,6 +31,20 @@ public class MessageActivity extends MyBaseActivity implements OnClickListener {
 		// TODO Auto-generated method stub
 		// setContentView(R.layout.activity_message);
 		messageAdapter = new MessageAdapter();
+		messageAdapter.setContext(this);
+		messageAdapter.setListener(new AdapterItemListener() {
+
+			private static final long serialVersionUID = 1L;
+
+			public boolean onAdapterItemListener(Object... objects) {
+				// TODO Auto-generated method stub
+				MessageData msg = (MessageData)objects[0];
+				Bundle bundle = new Bundle();
+				bundle.putSerializable("message",msg);
+				openActivity(MessageDetailActivity.class,bundle);
+				return false;
+			}
+		});
 		listView.setAdapter(messageAdapter);
 		// 返回
 		setBackButton();
@@ -37,7 +54,8 @@ public class MessageActivity extends MyBaseActivity implements OnClickListener {
 	}
 
 	private void loadData() {
-		HttpgetMessageListClient client = new HttpgetMessageListClient();
+		
+		final HttpgetMessageListClient client = new HttpgetMessageListClient();
 		client.addAsynHcResponseListenrt(new AsynHcResponseListener() {
 			
 			public boolean onTimeout() {
@@ -47,6 +65,10 @@ public class MessageActivity extends MyBaseActivity implements OnClickListener {
 			
 			public boolean onSuccess(BaseAsynHttpClient asynHttpClient) {
 				// TODO Auto-generated method stub
+				if(client.getList() != null){
+					messageAdapter.setList(client.getList());
+					messageAdapter.notifyDataSetChanged();
+				}
 				return false;
 			}
 			

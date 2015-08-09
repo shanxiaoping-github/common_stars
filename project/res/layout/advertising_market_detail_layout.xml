@@ -40,16 +40,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="35dip"
         android:layout_marginRight="35dip"
-        android:layout_marginTop="35dip"
+        android:layout_marginTop="15dip"
         android:background="@drawable/blue_btn_back_ground"
         android:clickable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingBottom="10dip"
-        android:paddingTop="10dip" >
+        android:paddingBottom="5dip"
+        android:paddingTop="5dip" >
 
         <View
             android:layout_width="0dip"
@@ -57,15 +57,15 @@
             android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="25dp"
-            android:src="@drawable/advert_ic_answer" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/balance_ic_pen_1" />
 
         <TextView
             style="@style/ordinary_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
+            android:layout_marginLeft="5dip"
             android:text="开始答题"
             android:textColor="@color/white" />
 

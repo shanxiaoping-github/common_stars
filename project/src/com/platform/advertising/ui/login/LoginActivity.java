@@ -19,7 +19,6 @@ import com.platform.advertising.Occupation;
 import com.platform.advertising.R;
 import com.platform.advertising.framework.MyBaseActivity;
 import com.platform.advertising.http.HttpLoginClient;
-import com.platform.advertising.http.HttpUserInfoClient;
 import com.platform.advertising.ui.home.HomePageActivity;
 import com.platform.advertising.ui.regist.ForgetPassWord;
 import com.platform.advertising.ui.regist.RegistActivity;
@@ -67,26 +66,18 @@ public class LoginActivity extends MyBaseActivity implements OnClickListener {
 		passWord = (EditText) findViewById(R.id.login_input_user_password);
 		registBtn = (Button) findViewById(R.id.login_input_regist);
 		loginBtn = (Button) findViewById(R.id.login_input_login);
-		//rememberBtn = (ImageButton) findViewById(R.id.login_remember_account);
+		// rememberBtn = (ImageButton)
+		// findViewById(R.id.login_remember_account);
 		forgetPassWordBtn = (TextView) findViewById(R.id.login_forget_password);
 		registBtn.setOnClickListener(this);
 		loginBtn.setOnClickListener(this);
-		//rememberBtn.setOnClickListener(this);
+		// rememberBtn.setOnClickListener(this);
 		forgetPassWordBtn.setOnClickListener(this);
-
-		// isRemember = SharedPreferencesUtil.getBoolean("isRemember");
-		// setRemember();
-
-		// if (isRemember) {
-		// openActivity(HomePageActivity.class);
-		// finish();
-		// }
 		// 加载职业
-		Occupation.loadList();;
+		Occupation.loadList();
 		// 加载年龄
 		Age.loadList();
-		
-		
+
 	}
 
 	public void onClick(View v) {
@@ -146,13 +137,6 @@ public class LoginActivity extends MyBaseActivity implements OnClickListener {
 					ShowUtil.closeHttpDialog();
 					showLongToast(loginClient.getMessage());
 					if (loginClient.isSuccess()) {
-						//获取个人信息
-						HttpUserInfoClient userClient = new HttpUserInfoClient();
-						userClient.setPramas(new Object[]{
-								mobile
-						});
-						userClient.submitRequest();
-						//存储
 						SharedPreferencesUtil.putString("mobile", mobile);
 						SharedPreferencesUtil.putString("password", password);
 						openActivity(HomePageActivity.class);
@@ -172,51 +156,8 @@ public class LoginActivity extends MyBaseActivity implements OnClickListener {
 			ShowUtil.openHttpDialog("登陆中...");
 			loginClient.submitRequest();
 
-			// send(new BaseThreadCallBack() {
-			// public String sendData() throws Exception {
-			// params.put("mobile", mobile);
-			// params.put("password", password);
-			// return HttpUtil.post("login", params);
-			// }
-			//
-			// public void handleSuccess(String result) throws Exception {
-			// //closeProgressDialog();
-			// ShowUtil.closeHttpDialog();
-			// try {
-			// JSONObject jsonObject = new JSONObject(result);
-			// if (jsonObject.getBoolean("code")){
-			// showLongToast(jsonObject.getString("message"));
-			// SharedPreferencesUtil.putString("mobile", mobile);
-			// SharedPreferencesUtil.putString("password", password);
-			// openActivity(HomePageActivity.class);
-			// finishBase();
-			// } else {
-			// showLongToast(jsonObject.getString("message"));
-			// }
-			// } catch (Exception e) {
-			// e.printStackTrace();
-			// showLongToast("解析数据失败!");
-			// }
-			// }
-			//
-			// public void handleError(String errorMessage) {
-			// //closeProgressDialog();
-			// ShowUtil.closeHttpDialog();
-			// showLongToast(errorMessage);
-			// }
-			//
-			// public void handleEmpty(){
-			// ShowUtil.openHttpDialog("登陆中...");
-			// //showProgressDialog("正在登陆...");
-			// }
-			// });
 		}
 	}
-
-	// private void rememberAccount() {
-	// isRemember = !isRemember;
-	// setRemember();
-	// }
 
 	private void forgetPassWord() {
 		final String mobile = userName.getText().toString().trim();

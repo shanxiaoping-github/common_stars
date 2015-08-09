@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import com.platform.advertising.R;
 import com.platform.advertising.ui.ChangePwdActivity;
 import com.platform.advertising.ui.LocationActivity;
 import com.platform.advertising.ui.MaterialActivity;
 import com.platform.advertising.ui.MessageActivity;
+import com.platform.advertising.ui.login.LoginActivity;
+import com.platform.advertising.util.SharedPreferencesUtil;
 
 /**
  * 设置
@@ -23,6 +26,7 @@ import com.platform.advertising.ui.MessageActivity;
 public class SetFragment extends BaseFragment implements OnClickListener {
 
 	private View lMaterial, lLocation, lMessage, lPassword,myAccount;
+	private Button outApp;
 
 	@Override
 	public View layout(LayoutInflater inflater) {
@@ -33,11 +37,13 @@ public class SetFragment extends BaseFragment implements OnClickListener {
 		lMessage = contentView.findViewById(R.id.lMessage);
 		lPassword = contentView.findViewById(R.id.lPassword);
 		myAccount = contentView.findViewById(R.id.my_account);
+		outApp = (Button)contentView.findViewById(R.id.set_fragment_outapp);
 		lMaterial.setOnClickListener(this);
 		lLocation.setOnClickListener(this);
 		lMessage.setOnClickListener(this);
 		lPassword.setOnClickListener(this);
 		myAccount.setOnClickListener(this);
+		outApp.setOnClickListener(this);
 		return contentView;
 	}
 
@@ -68,6 +74,18 @@ public class SetFragment extends BaseFragment implements OnClickListener {
 		case R.id.my_account://我得账户
 			((BaseActivity)getActivity()).openActivity(AccountActivity.class);
 			break;
+		case R.id.set_fragment_outapp:
+			outApp();
+			break;
 		}
+	}
+	/**
+	 * 安全退出
+	 */
+	private void outApp(){
+		SharedPreferencesUtil.putString("mobile", "");
+		SharedPreferencesUtil.putString("password", "");
+	    ((BaseActivity)getActivity()).openActivity(LoginActivity.class);
+		
 	}
 }

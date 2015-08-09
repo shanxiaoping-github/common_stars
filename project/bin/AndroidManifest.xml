@@ -7,51 +7,7 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="17" />
-
-    <application
-        android:name=".framework.MySXPApplication"
-        android:allowBackup="true"
-        android:icon="@drawable/icon"
-        android:label="@string/app_name"
-        android:theme="@style/AppBaseTheme" >
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <!-- 首页 -->
-        <activity android:name=".ui.home.HomePageActivity" />
-        <!-- 注册 -->
-        <activity android:name=".ui.regist.RegistActivity" />
-        <!-- 完善资料 -->
-        <activity android:name=".ui.regist.PerfectActivity" />
-        <!-- 忘记密码 -->
-        
-        
-        
-        <activity android:name=".ui.home.AccountActivity" />
-        <activity android:name=".ui.home.FindActivity" />
-        <activity android:name=".ui.regist.ForgetPassWord" />
-        <activity android:name=".ui.find.FindResultActivity" />
-        <activity android:name=".ui.find.CompanyDetailActivity" />
-        <activity android:name=".ui.CitySelectActivity" />
-        <activity android:name=".ui.data.UploadDataActivity" />
-        <!-- <activity android:name=".ui.AdvertisingMarketActivity" /> -->
-        <activity android:name=".ui.AdvertisingMarketDetailActivity" />
-        <activity android:name=".ui.AnswerStartActivity" />
-        <activity android:name=".ui.AnswerGradeActivity" />
-        <activity android:name=".ui.ContractActivity" />
-        <activity android:name=".ui.ChangePwdActivity" />
-         <activity android:name=".ui.MaterialActivity" />
-         <activity android:name=".ui.LocationActivity" />
-         <activity android:name=".ui.MessageActivity" />
-         <activity android:name=".ui.MessageDetailActivity" />
-    </application>
-
+    <!-- 权限 -->
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -66,9 +22,74 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <!-- 定位权限 -->
+    <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    
+    
+    
+
+    <application
+        android:name=".framework.MySXPApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppBaseTheme" >
+        <activity android:name=".ui.StartActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 首页 -->
+        <activity android:name=".ui.home.HomePageActivity" />
+        <!-- 注册 -->
+        <activity android:name=".ui.regist.RegistActivity" />
+        <!-- 完善资料 -->
+        <activity android:name=".ui.regist.PerfectActivity" />
+        <!-- 忘记密码 -->
+
+        <activity android:name=".ui.home.AccountActivity" />
+        <activity android:name=".ui.home.FindActivity" />
+        <activity android:name=".ui.regist.ForgetPassWord" />
+        <activity android:name=".ui.find.FindResultActivity" />
+        <activity android:name=".ui.find.CompanyDetailActivity" />
+        <activity android:name=".ui.CitySelectActivity" />
+        <activity android:name=".ui.data.UploadDataActivity" />
+        <!-- <activity android:name=".ui.AdvertisingMarketActivity" /> -->
+        <activity android:name=".ui.AdvertisingMarketDetailActivity" />
+        <activity android:name=".ui.AnswerStartActivity" />
+        <activity android:name=".ui.AnswerGradeActivity" />
+        <activity android:name=".ui.ContractActivity" />
+        <activity android:name=".ui.ChangePwdActivity" />
+        <activity android:name=".ui.MaterialActivity" />
+        <activity android:name=".ui.LocationActivity" />
+        <activity android:name=".ui.MessageActivity" />
+        <activity android:name=".ui.MessageDetailActivity" />
+        <activity android:name=".ui.MessageReplyActivity" />
+        <activity android:name=".baidu_sdk.LBSActivity" />
+        <activity android:name=".ui.WithdrawalRecordActivity" />
+        
+
+        
+        
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+        
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="KVoM1nNeKw2jj3OMKW25s8DN" />
+    </application>
 
 </manifest>

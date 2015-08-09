@@ -9,7 +9,6 @@ import sxp.android.framework.http.BaseAsynHttpClient;
 import sxp.android.framework.http.BaseAsynHttpClient.AsynHcResponseListener;
 import sxp.android.framework.util.FileUtil;
 import sxp.android.framework.util.MathUtil;
-import sxp.android.framework.util.ShowUtil;
 import sxp.android.framework.util.StringUtil;
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +19,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.baidu.location.BDLocation;
 import com.platform.advertising.R;
+import com.platform.advertising.baidu_sdk.LBSActivity;
 import com.platform.advertising.framework.MyBaseActivity;
 import com.platform.advertising.http.HttpEnterpriseInformationSubmitClient;
 import com.platform.advertising.ui.CitySelectActivity;
@@ -78,6 +79,15 @@ public class UploadDataActivity extends MyBaseActivity implements
 	@ID(value = R.id.upload_data_adress, isBindListener = true)
 	private View selectAdress;
 
+	@ID(value = R.id.lCenter, isBindListener = true)
+	private View lbs;
+
+	@ID(value = R.id.location)
+	private TextView location;
+
+	private String longitude = "0";
+	private String latitude = "0";
+
 	@Override
 	protected void layout() {
 		// TODO Auto-generated method stub
@@ -122,7 +132,18 @@ public class UploadDataActivity extends MyBaseActivity implements
 		case R.id.upload_data_adress:
 			openActivityResult(CitySelectActivity.class, 2);
 			break;
+		case R.id.lCenter:
+			lbs();
+			break;
 		}
+	}
+
+	/**
+	 * 定位
+	 */
+	private void lbs() {
+		// BaiduLBSManager.getInstance().startLBS();
+		openActivityResult(LBSActivity.class, 3);
 	}
 
 	private String currentUploadPath;
@@ -172,6 +193,20 @@ public class UploadDataActivity extends MyBaseActivity implements
 			}
 
 			break;
+		case 3:
+			if (arg2 != null) {
+
+				BDLocation bdLocation = arg2.getExtras().getParcelable(
+						BDLocation.class.getName());
+				longitude = String.valueOf(bdLocation.getLongitude());
+				latitude = String.valueOf(bdLocation.getLatitude());
+
+				location.setText("经度:" + bdLocation.getLongitude() + ",纬度:"
+						+ bdLocation.getLatitude() + "\n"
+						+ bdLocation.getAddrStr());
+
+			}
+			break;
 		}
 	}
 
@@ -215,29 +250,29 @@ public class UploadDataActivity extends MyBaseActivity implements
 			showLongToast("请选择地区");
 		} else if (StringUtil.isEmpty(specificAddressStr)) {
 			showLongToast("请填写详细地址");
-		} else if (StringUtil.isEmpty(companyIntroduceStr)){
+		} else if (StringUtil.isEmpty(companyIntroduceStr)) {
 			showLongToast("请填写公司介绍");
-		}else{
+		} else {
 			final HttpEnterpriseInformationSubmitClient client = new HttpEnterpriseInformationSubmitClient();
 			client.addAsynHcResponseListenrt(new AsynHcResponseListener() {
-				
+
 				public boolean onTimeout() {
 					// TODO Auto-generated method stub
 					com.platform.advertising.util.ShowUtil.closeHttpDialog();
 					showShortToast("提交失败");
 					return false;
 				}
-				
+
 				public boolean onSuccess(BaseAsynHttpClient asynHttpClient) {
 					// TODO Auto-generated method stub
 					com.platform.advertising.util.ShowUtil.closeHttpDialog();
 					showShortToast(client.getMessage());
-					if(client.isSuccess()){
+					if (client.isSuccess()) {
 						finishBase();
 					}
 					return false;
 				}
-				
+
 				public boolean onEmpty() {
 					// TODO Auto-generated method stub
 					com.platform.advertising.util.ShowUtil.closeHttpDialog();
@@ -245,36 +280,24 @@ public class UploadDataActivity extends MyBaseActivity implements
 					return false;
 				}
 			});
-//			"companyName",
-//			"districtId",
-//			"provinceId",
-//			"cityId",
-//			"address",
-//			"phone",
-//			"contactPerson",
-//			"introduce",
-//			"longitude",
-//			"latitude",
-//			"uploadFile"
+			// "companyName",
+			// "districtId",
+			// "provinceId",
+			// "cityId",
+			// "address",
+			// "phone",
+			// "contactPerson",
+			// "introduce",
+			// "longitude",
+			// "latitude",
+			// "uploadFile"
 
-			
-			
-			client.setPramas(new Object[]{
-				companyNameStr,
-				areaId,
-				provinceId,
-				cityId,
-				specificAddressStr,
-				phoneStr,
-				contractPersonStr,
-				companyIntroduceStr,
-				"1.0",
-				"1.0",
-				file
-			});
+			client.setPramas(new Object[] { companyNameStr, areaId, provinceId,
+					cityId, specificAddressStr, phoneStr, contractPersonStr,
+					companyIntroduceStr, longitude,latitude,file });
 			com.platform.advertising.util.ShowUtil.openHttpDialog("提交中...");
 			client.submitRequest();
-			
+
 		}
 
 	}
@@ -289,4 +312,5 @@ public class UploadDataActivity extends MyBaseActivity implements
 		}
 		return true;
 	}
+
 }

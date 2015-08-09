@@ -19,7 +19,6 @@ import com.platform.advertising.ui.adapter.AdvertisingAdapter;
 import com.platform.advertising.ui.data.AdvertisingData;
 import com.platform.advertising.ui.data.UploadDataActivity;
 import com.platform.advertising.util.ShowUtil;
-
 /**
  * 
  * @author xiaoping.shan 注册界面

@@ -249,4 +249,17 @@
         android:layout_height="1dip"
         android:background="@color/diverGray" />
 
+    <Button
+        android:id="@+id/set_fragment_outapp"
+        style="@style/ordinary_font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/orange_btn_back_ground"
+        android:padding="10dp"
+        android:text="安全退出"
+        android:textColor="@color/white" />
+
 </LinearLayout>

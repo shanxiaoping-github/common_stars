@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.platform.advertising.R;
+import com.platform.advertising.baidu_sdk.BaiduLBSManager;
 import com.platform.advertising.ui.AdvertisingMarketFragment;
 
 /**
@@ -27,6 +28,9 @@ public class HomePageActivity extends BaseFragmentActivity implements
 	public void layout() {
 		// TODO Auto-generated method stub
 		super.layout();
+		//初始定位
+		BaiduLBSManager.getInstance().initLBS();
+		
 		setContentView(R.layout.home_page_layout);
 		/* 初始view */
 		p1 = findViewById(R.id.home_page_p1_layout);
