@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import sxp.android.framework.data.BaseData;
 import sxp.android.framework.util.JsonUtil;
+import sxp.android.framework.util.StringUtil;
 
 /**
  * 公司数据
@@ -34,7 +35,8 @@ public class CompanyData implements BaseData {
 	// id
 	private String id;
 	// imageList
-	private String imageList;
+	
+	private ArrayList<ImageData> imageList;
 	// 区id
 	private String districtId;
 	// 地址
@@ -68,7 +70,10 @@ public class CompanyData implements BaseData {
 		// id
 		id = JsonUtil.getJsonString(jo, "id");
 		// imageList
-		imageList = JsonUtil.getJsonString(jo, "imageList");
+		String imageListStr = JsonUtil.getJsonString(jo, "imageList");
+		if(!StringUtil.isJsonEmpty(imageListStr)){
+			imageList = ImageData.getList(imageListStr);
+		}
 		// 区id
 		districtId = JsonUtil.getJsonString(jo, "districtId");
 		// 地址
@@ -76,7 +81,7 @@ public class CompanyData implements BaseData {
 		// 联系人
 		contactPerson = JsonUtil.getJsonString(jo, "contactPerson");
 		// 移动电话
-		mobil = JsonUtil.getJsonString(jo, "mobil");
+		mobil = JsonUtil.getJsonString(jo, "mobile");
 
 	}
 
@@ -149,11 +154,12 @@ public class CompanyData implements BaseData {
 		this.id = id;
 	}
 
-	public String getImageList() {
+	
+	public ArrayList<ImageData> getImageList() {
 		return imageList;
 	}
 
-	public void setImageList(String imageList) {
+	public void setImageList(ArrayList<ImageData> imageList) {
 		this.imageList = imageList;
 	}
 

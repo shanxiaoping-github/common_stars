@@ -25,9 +25,9 @@
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/company_detail_img"
         android:layout_width="match_parent"
-        android:layout_height="200dip"
-        android:src="@drawable/ic_launcher" />
+        android:layout_height="200dip" />
 
     <TextView
         android:id="@+id/company_detail_introduce"
@@ -46,8 +46,8 @@
         android:padding="10dip" >
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="18dp"
             android:src="@drawable/product_ic_address" />
 
         <TextView
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dip"
+            android:layout_marginLeft="0dip"
             android:text="地址:xxxxxxxxxxxxxxxxxxxxxx"
             android:textColor="@color/shallowGray" />
     </LinearLayout>

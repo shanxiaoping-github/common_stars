@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/baseColor"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            style="@style/title_bar"
+            android:text="注册协议" />
+
+        <ImageButton
+            android:id="@+id/regist_greenment_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dip"
+            android:background="@color/emptyColor"
+            android:src="@drawable/top_back_ground" />
+    </RelativeLayout>
+
+    <TextView
+        style="@style/normal_font"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:text="甲方：长沙县星共信息科技有限公司\n乙方：个人用户\n
+欢迎使用甲方通过121宣传网（121xc.com）提供的服务。以下条款即构成与甲方就使用服务达成协议，一旦注册和使用121宣传网/软件，即表示已接受以下所述条款。\n\n
+1、乙方不得用本软件/网站进行危害国家安全、侵害他人利益的违法犯罪活动。\n
+2、乙方不得进行虚假宣传，误导、欺诈他人。\n
+3、乙方不得侮辱、诽谤和恶意评价、攻击他人。\n
+4、乙方提供的资料明显不真实。\n
+5、乙方违反前面1、2、3、4条的，甲方有权暂停或终止注册身份，构成犯罪的甲方有权移送执法机关。\n
+6、乙方对本软件上第三方发布的宣传信息的真实性自主判断，由此产生的一切后果自己承担。 \n
+7、乙方唯有通过参与广告和市场调查获取收益，禁止使用其他技术手段篡改数据，否则甲方有权终止一切服务及追究法律责任。\n
+8、乙方必须年满14周岁。\n
+9、甲方有义务对乙方的个人信息进行保密，不得泄露给第三方。\n
+10、因自然灾害、黑客攻击等不可抗力对乙方造成损失的，甲方需尽力挽回。\n
+11、本协议自乙方注册之日起生效。\n
+12、本网具有对该条款的最终解释权。"
+        android:textColor="@color/shallowGray" />
+
+</LinearLayout>

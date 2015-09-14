@@ -226,12 +226,13 @@
     </LinearLayout>
 
     <TextView
-        style="@style/small_font"
+        android:id="@+id/regist_agreement"
+        style="@style/normal_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dip"
-        android:text="确认之后完善相关资料  >"
-        android:textColor="@color/orange" />
+        android:layout_marginTop="10dip"
+        android:text="注册协议  >"
+        android:textColor="@drawable/text_orange_blue_select_color" />
 
 </LinearLayout>

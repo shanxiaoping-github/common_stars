@@ -30,29 +30,34 @@ public abstract class HttpAdvertisingClient extends BaseAsynHttpClient {
 	 */
 	protected abstract String getAdress();
 
-	// 0 一般参数 1 file参数
-	private int state = 0;
-
+	private final String[] paramsKey = new String[] { "interCode",
+	"jsonContent" };
 	@Override
 	public String[] getPramasKeys() {
 		// TODO Auto-generated method stub
-		switch (state) {
-		case 0:
-			return paramsKey;
-		case 1:
-			return paramsFileKey;
-		default:
-			return paramsKey;
-		}
 
+		return paramsKey;
+	}
+	
+	@Override
+	public String getFileName() {
+		// TODO Auto-generated method stub
+		return "uploadFile";
+	}
+	
+	
+	@Override
+	public File getFileArray() {
+		// TODO Auto-generated method stub
+		return fileArray;
 	}
 
-	private final String[] paramsKey = new String[] { "interCode",
-			"jsonContent" };
-	private final String[] paramsFileKey = new String[] { "interCode",
-			"jsonContent", "uploadFile" };
-	private File file;
+	private File fileArray;
 	
+	public void setFileArray(File fileArray) {
+		this.fileArray = fileArray;
+	}
+
 	@Override
 	public void setPramas(Object... params) {
 		// TODO Auto-generated method stub
@@ -65,27 +70,13 @@ public abstract class HttpAdvertisingClient extends BaseAsynHttpClient {
 				JSONObject jo = new JSONObject();
 				for (int i = 0; i < params.length; i++) {
 					try {
-
-						boolean isFile = params[i] instanceof File ? true
-								: false;
-						if (isFile) {
-                           state = 1;
-                           file = (File)params[i];
-						} else {
-							jo.put(contentKeys[i], String.valueOf(params[i]));
-						}
+						jo.put(contentKeys[i], String.valueOf(params[i]));
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
-				
-				if(file == null){
-					tempParams = new Object[2];
-				}else{
-					tempParams = new Object[3];
-					tempParams[2] = file;
-				}
+				tempParams = new Object[2];
 				tempParams[0] = getAdress();
 				tempParams[1] = jo.toString();
 			}
@@ -98,14 +89,6 @@ public abstract class HttpAdvertisingClient extends BaseAsynHttpClient {
 		super.setPramas(tempParams);
 	}
 	
-//	public File[] getFile(){
-//		File[] fileArray = new File[fileList.size()];
-//		for (int i = 0; i < fileList.size(); i++) {
-//			File file = fileList.get(i);
-//			fileArray[i] = file;
-//		}
-//		return fileArray;
-//	}
 
 	/**
 	 * 提交请求

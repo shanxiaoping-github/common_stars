@@ -25,6 +25,10 @@ public class UserInfo implements BaseData {
 	private String updateTime;
 	private String gender;
 	private String jobName;
+	
+	private String provinceName;
+	private String cityName;
+	private String districtName;	
 
 	public void parser(JSONObject jo) {
 		// TODO Auto-generated method stub
@@ -41,6 +45,10 @@ public class UserInfo implements BaseData {
 		updateTime = JsonUtil.getJsonString(jo, "updateTime");
 		gender = JsonUtil.getJsonString(jo, "gender");
 		jobName = JsonUtil.getJsonString(jo, "jobName");
+		
+		provinceName = JsonUtil.getJsonString(jo, "provinceName");
+		cityName = JsonUtil.getJsonString(jo, "cityName");
+		districtName = JsonUtil.getJsonString(jo, "districtName");
 
 	}
 
@@ -151,6 +159,48 @@ public class UserInfo implements BaseData {
 
 	public void setJobName(String jobName) {
 		this.jobName = jobName;
+	}
+
+	public String getProvinceName() {
+		return provinceName;
+	}
+
+	public void setProvinceName(String provinceName) {
+		this.provinceName = provinceName;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getDistrictName() {
+		return districtName;
+	}
+
+	public void setDistrictName(String districtName) {
+		this.districtName = districtName;
+	}
+
+	public com.platform.advertising.UserInfo copyUserInfo(){
+		com.platform.advertising.UserInfo userInfo  = new com.platform.advertising.UserInfo();
+		userInfo.setSex(gender);
+		userInfo.setAgeId(ageGroupId);
+		userInfo.setAgeName(ageGroupName);
+		userInfo.setJobId(jobId);
+		userInfo.setJobName(jobName);
+		userInfo.setProvinceId(provinceId);
+		userInfo.setProvinceName(provinceName);
+		userInfo.setCityId(cityId);
+		userInfo.setCityName(cityName);
+		userInfo.setAreaId(districtId);
+		userInfo.setAreaName(districtName);
+		userInfo.setIsNetShoping(onlineShopping);
+		userInfo.setIsMarry(isMarry);
+		return userInfo;
 	}
 	
 

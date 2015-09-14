@@ -1,38 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightBlue"
-    android:orientation="vertical" >
+    android:background="@color/lightBlue" >
 
     <ImageView
-        android:layout_width="130dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/icon" />
-
-    <TextView
-        style="@style/title_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dip"
-        android:text="赚钱/采购/宣传 —— 应有尽有"
-        android:textColor="@color/blue" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/introduce" />
 
     <TextView
         style="@style/normal_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:text="您的企业宣传好帮手"
         android:textColor="@color/lightGray" />
 
-</LinearLayout>
+</RelativeLayout>

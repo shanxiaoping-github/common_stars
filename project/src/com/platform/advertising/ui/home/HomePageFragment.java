@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 import com.platform.advertising.R;
-import com.platform.advertising.ui.data.UploadDataActivity;
+import com.platform.advertising.ui.UploadDataActivity;
 
 /**
  * 首页

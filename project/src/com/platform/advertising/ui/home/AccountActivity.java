@@ -11,6 +11,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -74,37 +75,47 @@ public class AccountActivity extends BaseActivity implements OnClickListener {
 	 * @param acount
 	 */
 
+	private TextView changeAccount;
+	
 	private TextView withdrawal;
 
-	private TextView blance;
+	private EditText blance;
 
 	private TextView desc;
 
-	private TextView zfbAccount;
+	private EditText zfbAccount;
 
-	private TextView realName;
+	private EditText realName;
 
 	private TextView record;
 	private Acount account;
-
+	
+	private Button submitBtn;
+	
 	public void accountDatailLayout(Acount account) {
 		this.account = account;
 		setContentView(R.layout.account_fragment_layout);
 		back = (ImageButton) findViewById(R.id.back);
 		back.setOnClickListener(this);
 
+		changeAccount = (TextView)findViewById(R.id.account_fragment_change);
+		changeAccount.setOnClickListener(this);
+		
 		withdrawal = (TextView) findViewById(R.id.account_fragment_withdrawal);
 		withdrawal.setOnClickListener(this);
 
-		blance = (TextView) findViewById(R.id.account_fragment_blance);
+		blance = (EditText) findViewById(R.id.account_fragment_blance);
 
 		desc = (TextView) findViewById(R.id.account_fragment_des);
 
-		zfbAccount = (TextView) findViewById(R.id.account_fragment_zfb_account);
+		zfbAccount = (EditText) findViewById(R.id.account_fragment_zfb_account);
 
-		realName = (TextView) findViewById(R.id.account_fragment_realname);
+		realName = (EditText) findViewById(R.id.account_fragment_realname);
 		record = (TextView) findViewById(R.id.record);
 		record.setOnClickListener(this);
+		
+		submitBtn = (Button)findViewById(R.id.account_fragment_submit);
+		submitBtn.setOnClickListener(this);
 
 		if (StringUtil.isEmpty(account.getBalance())
 				|| account.getBalance().equals("null")) {
@@ -157,10 +168,83 @@ public class AccountActivity extends BaseActivity implements OnClickListener {
 		case R.id.back:
 			finishBase();
 			break;
-
 		case R.id.record:
 			record();
 			break;
+		case R.id.account_fragment_change:
+			changeAccount();
+			break;
+		case R.id.account_fragment_submit:
+			uploadAccount();
+			break;
+		}
+	}
+	/**
+	 * 更新账号信息
+	 */
+	private void uploadAccount(){
+		
+		final String nameStr = realName.getText().toString();
+		final String zhifubaoStr = zfbAccount.getText().toString();
+		if (StringUtil.isEmpty(nameStr)){
+			showShortToast("真实姓名不能为空");
+		}else if (StringUtil.isEmpty(zhifubaoStr)){
+			showShortToast("支付宝账号不能为空");
+		}else {
+
+			final HttpAddAccountClient client = new HttpAddAccountClient();
+			client.addAsynHcResponseListenrt(new AsynHcResponseListener() {
+
+				public boolean onTimeout() {
+					// TODO Auto-generated method stub
+					ShowUtil.closeHttpDialog();
+					showShortToast("修改失败");
+					return false;
+				}
+
+				public boolean onSuccess(BaseAsynHttpClient asynHttpClient) {
+					// TODO Auto-generated method stub
+					ShowUtil.closeHttpDialog();
+					showShortToast(client.getMessage());
+					if (client.isSuccess()) {
+						changeAccount.setVisibility(View.VISIBLE);
+						submitBtn.setVisibility(View.GONE);
+						zfbAccount.setEnabled(false);
+					    realName.setEnabled(false);
+					}
+					return false;
+				}
+
+				public boolean onEmpty() {
+					// TODO Auto-generated method stub
+					ShowUtil.closeHttpDialog();
+					showShortToast("修改失败");
+					return false;
+				}
+			});
+			client.setPramas(new Object[] {
+					SharedPreferencesUtil.getString("mobile"), nameStr,
+					zhifubaoStr });
+			ShowUtil.openHttpDialog("修改中...");
+			client.submitRequest();
+		}
+		
+	}
+	/**
+	 * 修改
+	 */
+	private void changeAccount(){
+		if(changeAccount.getText().toString().equalsIgnoreCase("修改")){
+			changeAccount.setText("取消");
+			submitBtn.setVisibility(View.VISIBLE);
+			zfbAccount.setEnabled(true);
+		    realName.setEnabled(true);
+		}else{
+			changeAccount.setText("修改");
+			submitBtn.setVisibility(View.GONE);
+			zfbAccount.setEnabled(false);
+		    realName.setEnabled(false);
+			
 		}
 	}
 

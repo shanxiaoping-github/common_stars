@@ -25,6 +25,7 @@ public class CompanyAdapter extends BaseAdapter<CompanyData> {
 
 			holder.companyTitle = (TextView) arg1
 					.findViewById(R.id.company_item_title);
+			holder.adress = (TextView)arg1.findViewById(R.id.company_item_adress);
 			arg1.setTag(holder);
 		} else {
 
@@ -33,7 +34,7 @@ public class CompanyAdapter extends BaseAdapter<CompanyData> {
 
 		final CompanyData companyData = getList().get(arg0);
 		holder.companyTitle.setText(companyData.getCompanyName());
-
+		holder.adress.setText(companyData.getAddress());
 		arg1.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -43,11 +44,13 @@ public class CompanyAdapter extends BaseAdapter<CompanyData> {
 						companyData });
 			}
 		});
+		
 		return arg1;
 	}
 
 	class Holder {
 		TextView companyTitle;
+		TextView adress;
 	}
 
 }

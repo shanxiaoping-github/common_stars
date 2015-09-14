@@ -25,8 +25,7 @@ public class HttpEnterpriseInformationSubmitClient extends HttpAdvertisingClient
 			"contactPerson",
 			"introduce",
 			"longitude",
-			"latitude",
-			"uploadFile"
+			"latitude"
 		};
 	}
 	

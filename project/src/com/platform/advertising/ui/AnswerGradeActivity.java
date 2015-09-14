@@ -298,12 +298,8 @@ public class AnswerGradeActivity extends MyBaseActivity implements
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
 		case R.id.tvContract:
-//			Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"
-//					+ adverData.getCompany().getPhone()));
-//			startActivity(intent);
-
 			Bundle bundle = new Bundle();
-			bundle.putString("receiveId","13667355464");
+			bundle.putString("receiveId",adverData.getCompany().getMobil());
 			openActivity(ContractActivity.class,bundle);
 			break;
 		case R.id.errorLayout:

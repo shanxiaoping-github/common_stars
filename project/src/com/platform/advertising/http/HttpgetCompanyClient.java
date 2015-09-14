@@ -23,10 +23,10 @@ public class HttpgetCompanyClient extends HttpAdvertisingClient {
 	protected String[] getContentPramasKeys() {
 		// TODO Auto-generated method stub
 		return new String[] { "pageNumber", "pageSize",
-//		 "districtId",
-//		 "provinceId",
-//		 "cityId",
-//		 "keyword"
+		 "districtId",
+		 "provinceId",
+		 "cityId",
+		 "keyword"
 		};
 	}
 

@@ -1,4 +1,4 @@
-package com.platform.advertising.ui.data;
+package com.platform.advertising.ui;
 
 import java.io.File;
 
@@ -24,9 +24,8 @@ import com.platform.advertising.R;
 import com.platform.advertising.baidu_sdk.LBSActivity;
 import com.platform.advertising.framework.MyBaseActivity;
 import com.platform.advertising.http.HttpEnterpriseInformationSubmitClient;
-import com.platform.advertising.ui.CitySelectActivity;
-import com.platform.advertising.ui.PhotoDialog;
 import com.platform.advertising.ui.PhotoDialog.CallBack;
+import com.platform.advertising.ui.data.UploadInformationData;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -47,7 +46,7 @@ public class UploadDataActivity extends MyBaseActivity implements
 	private ImageView showImg;
 
 	@ID(value = R.id.upload_data_all_submit, isBindListener = true)
-	private View submit;
+	private TextView submit;
 
 	@ID(value = R.id.btnUpload)
 	private Button sureBtn;
@@ -87,6 +86,7 @@ public class UploadDataActivity extends MyBaseActivity implements
 
 	private String longitude = "0";
 	private String latitude = "0";
+	private String adress;
 
 	@Override
 	protected void layout() {
@@ -94,6 +94,50 @@ public class UploadDataActivity extends MyBaseActivity implements
 		setBackButton();
 		tempFile = FileUtil.getSDPath() + StringUtil.getFileNameByUIID()
 				+ ".png";
+		UploadInformationData uploadInformationData = SXPApplication
+				.getInstance().getSXPRuntimeContext()
+				.getData(UploadInformationData.class);
+		if (uploadInformationData != null) {
+			setUploadInformationData(uploadInformationData);
+		}
+	}
+
+	/**
+	 * @param uploadInformationData
+	 */
+	private void setUploadInformationData(
+			UploadInformationData uploadInformationData) {
+		Picasso.with(this)
+				.load(uploadInformationData.getFile())
+				.resize(SXPApplication.getWindowWidth(this) - 30,
+						MathUtil.diptopx(this, 160)).into(showImg);
+		setSureBtn(true);
+		companyName.setText(uploadInformationData.getCompanyName());
+		specific_address.setText(uploadInformationData.getSpecific_address());
+		company_introduce.setText(uploadInformationData.getCompany_introduce());
+		contactPerson.setText(uploadInformationData.getContractPerson());
+		phone.setText(uploadInformationData.getPhone());
+
+		area_province.setText(uploadInformationData.getProvinceName());
+		provinceId = uploadInformationData.getProvinceId();
+		provinceName = uploadInformationData.getProvinceName();
+
+		area_city.setText(uploadInformationData.getCityName());
+		cityId = uploadInformationData.getCityId();
+		cityName = uploadInformationData.getCityName();
+
+		area_area.setText(uploadInformationData.getAreaName());
+		areaId = uploadInformationData.getAreaId();
+		areaName = uploadInformationData.getAreaName();
+
+		latitude = uploadInformationData.getLatitude();
+		longitude = uploadInformationData.getLongitude();
+		adress = uploadInformationData.getAdress();
+		if (!StringUtil.isEmpty(adress)) {
+			location.setText("经度:" + longitude + ",纬度:" + latitude + "\n"
+					+ adress);
+		}
+		submit.setText("修改");
 
 	}
 
@@ -146,10 +190,15 @@ public class UploadDataActivity extends MyBaseActivity implements
 		openActivityResult(LBSActivity.class, 3);
 	}
 
-	private String currentUploadPath;
+	// private String currentUploadPath;
 	private String provinceId;
+	private String provinceName;
+
 	private String cityId;
+	private String cityName;
+
 	private String areaId;
+	private String areaName;
 	private File file;
 
 	@Override
@@ -161,19 +210,40 @@ public class UploadDataActivity extends MyBaseActivity implements
 			if (arg2 != null) {
 				String path = sxp.android.framework.util.ShowUtil.getAlbumPath(
 						this, arg2);
-				currentUploadPath = path;
+				// currentUploadPath = path;
 				file = new File(path);
 				Picasso.with(this)
 						.load(file)
 						.resize(SXPApplication.getWindowWidth(this) - 30,
 								MathUtil.diptopx(this, 160)).into(showImg);
 				setSureBtn(true);
+
+//				AsyncHttpClient client = new AsyncHttpClient();
+//				RequestParams params = new RequestParams();
+//				try {
+//					params.put("interCode", "submitEnterpriseData");
+//					params.put("uploadFile", file);
+//					params.put("jsonContent","");
+//					
+//					
+//
+//				} catch (FileNotFoundException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//
+//				client.post(
+//						Configuration.getInstance().getProperty(
+//								Configuration.SERVICE_ADRESS), params,
+//						new AsyncHttpResponseHandler() {
+//						});
+
 			}
 			break;
 
 		case 1:
 			if (arg1 == Activity.RESULT_OK) {
-				currentUploadPath = tempFile;
+				// currentUploadPath = tempFile;
 				file = new File(tempFile);
 				Picasso.with(this)
 						.load(file)
@@ -184,12 +254,19 @@ public class UploadDataActivity extends MyBaseActivity implements
 			break;
 		case 2:
 			if (arg2 != null) {
+
+				provinceId = arg2.getStringExtra("selectProvinceId");
+				provinceName = arg2.getStringExtra("selectProvince");
+
+				cityId = arg2.getStringExtra("selectCityId");
+				cityName = arg2.getStringExtra("selectCity");
+
+				areaId = arg2.getStringExtra("selectAreaId");
+				areaName = arg2.getStringExtra("selectArea");
+
 				area_province.setText(arg2.getStringExtra("selectProvince"));
 				area_city.setText(arg2.getStringExtra("selectCity"));
 				area_area.setText(arg2.getStringExtra("selectArea"));
-				provinceId = arg2.getStringExtra("selectProvinceId");
-				cityId = arg2.getStringExtra("selectCityId");
-				areaId = arg2.getStringExtra("selectAreaId");
 			}
 
 			break;
@@ -200,7 +277,7 @@ public class UploadDataActivity extends MyBaseActivity implements
 						BDLocation.class.getName());
 				longitude = String.valueOf(bdLocation.getLongitude());
 				latitude = String.valueOf(bdLocation.getLatitude());
-
+				adress = bdLocation.getAddrStr();
 				location.setText("经度:" + bdLocation.getLongitude() + ",纬度:"
 						+ bdLocation.getLatitude() + "\n"
 						+ bdLocation.getAddrStr());
@@ -218,7 +295,7 @@ public class UploadDataActivity extends MyBaseActivity implements
 			sureBtn.setBackgroundResource(R.drawable.blue_btn_back_ground);
 		} else {
 			file = null;
-			currentUploadPath = "";
+			// currentUploadPath = "";
 			showImg.setImageDrawable(null);
 			btnCamera.setVisibility(View.VISIBLE);
 			sureBtn.setEnabled(false);
@@ -232,11 +309,12 @@ public class UploadDataActivity extends MyBaseActivity implements
 	 * 提交
 	 */
 	private void submit() {
-		String companyNameStr = companyName.getText().toString();
-		String specificAddressStr = specific_address.getText().toString();
-		String companyIntroduceStr = company_introduce.getText().toString();
-		String contractPersonStr = contactPerson.getText().toString();
-		String phoneStr = phone.getText().toString();
+		final String companyNameStr = companyName.getText().toString();
+		final String specificAddressStr = specific_address.getText().toString();
+		final String companyIntroduceStr = company_introduce.getText()
+				.toString();
+		final String contractPersonStr = contactPerson.getText().toString();
+		final String phoneStr = phone.getText().toString();
 
 		if (!sureBtn.isEnabled()) {
 			showLongToast("请选取或拍摄图片");
@@ -268,7 +346,33 @@ public class UploadDataActivity extends MyBaseActivity implements
 					com.platform.advertising.util.ShowUtil.closeHttpDialog();
 					showShortToast(client.getMessage());
 					if (client.isSuccess()) {
-						finishBase();
+						// finishBase();
+						UploadInformationData uploadInformationData = new UploadInformationData();
+						uploadInformationData.setCompanyName(companyNameStr);
+						uploadInformationData
+								.setSpecific_address(specificAddressStr);
+						uploadInformationData
+								.setCompany_introduce(companyIntroduceStr);
+						uploadInformationData
+								.setContractPerson(contractPersonStr);
+						uploadInformationData.setPhone(phoneStr);
+						uploadInformationData.setProvinceId(provinceId);
+						uploadInformationData.setProvinceName(provinceName);
+						uploadInformationData.setCityId(cityId);
+						uploadInformationData.setCityName(cityName);
+						uploadInformationData.setAreaId(areaId);
+						uploadInformationData.setAreaName(areaName);
+						uploadInformationData.setFile(file);
+						uploadInformationData.setLatitude(latitude);
+						uploadInformationData.setLongitude(longitude);
+						uploadInformationData.setAdress(adress);
+						SXPApplication
+								.getInstance()
+								.getSXPRuntimeContext()
+								.savaData(
+										UploadInformationData.class.getName(),
+										uploadInformationData);
+						submit.setText("修改");
 					}
 					return false;
 				}
@@ -280,22 +384,12 @@ public class UploadDataActivity extends MyBaseActivity implements
 					return false;
 				}
 			});
-			// "companyName",
-			// "districtId",
-			// "provinceId",
-			// "cityId",
-			// "address",
-			// "phone",
-			// "contactPerson",
-			// "introduce",
-			// "longitude",
-			// "latitude",
-			// "uploadFile"
-
+			client.setFileArray(file);
 			client.setPramas(new Object[] { companyNameStr, areaId, provinceId,
 					cityId, specificAddressStr, phoneStr, contractPersonStr,
-					companyIntroduceStr, longitude,latitude,file });
+					companyIntroduceStr, longitude, latitude});
 			com.platform.advertising.util.ShowUtil.openHttpDialog("提交中...");
+			
 			client.submitRequest();
 
 		}

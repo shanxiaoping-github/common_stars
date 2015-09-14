@@ -1,12 +1,14 @@
 package com.platform.advertising.ui.login;
 
 import sxp.android.framework.annotation.LAYOUT;
+import sxp.android.framework.application.SXPApplication;
 import sxp.android.framework.http.BaseAsynHttpClient;
 import sxp.android.framework.http.BaseAsynHttpClient.AsynHcResponseListener;
 import sxp.android.framework.util.MathUtil;
 import sxp.android.framework.util.StringUtil;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -77,7 +79,11 @@ public class LoginActivity extends MyBaseActivity implements OnClickListener {
 		Occupation.loadList();
 		// 加载年龄
 		Age.loadList();
-
+		
+		String mobileStr = SharedPreferencesUtil.getString("mobile");
+		String pwdStr = SharedPreferencesUtil.getString("password");
+		userName.setText(mobileStr);
+		passWord.setText(pwdStr);
 	}
 
 	public void onClick(View v) {
@@ -99,13 +105,6 @@ public class LoginActivity extends MyBaseActivity implements OnClickListener {
 
 	}
 
-	// private void setRemember() {
-	// if (isRemember) {
-	// rememberBtn.setImageResource(R.drawable.login_input_remember_1);
-	// } else {
-	// rememberBtn.setImageResource(R.drawable.login_input_remember);
-	// }
-	// }
 
 	private void regist() {
 		openActivity(RegistActivity.class);
@@ -168,6 +167,16 @@ public class LoginActivity extends MyBaseActivity implements OnClickListener {
 		Bundle bundle = new Bundle();
 		bundle.putString("mobile", mobile);
 		openActivity(ForgetPassWord.class, bundle);
+	}
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if(keyCode ==  KeyEvent.KEYCODE_BACK){
+			SXPApplication.outApp(true);
+			return true;
+		}else{
+			return super.onKeyDown(keyCode, event);
+		}
 	}
 
 }

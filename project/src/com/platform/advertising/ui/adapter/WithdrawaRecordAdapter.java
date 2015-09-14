@@ -9,6 +9,7 @@ import com.platform.advertising.ui.data.WithdrawaData;
 
 import sxp.android.framework.adapter.BaseAdapter;
 import sxp.android.framework.util.ShowUtil;
+import sxp.android.framework.util.TimeUtil;
 
 public class WithdrawaRecordAdapter extends BaseAdapter<WithdrawaData>{
 
@@ -30,7 +31,8 @@ public class WithdrawaRecordAdapter extends BaseAdapter<WithdrawaData>{
 		WithdrawaData withdrawaData = getData(arg0);
 		holder.bank.setText(withdrawaData.getBank()+"-尾号"+withdrawaData.getAccount().substring(withdrawaData.getAccount().length()-4));
 		holder.money.setText("￥"+withdrawaData.getAmount());
-		holder.time.setText(withdrawaData.getPaymentDate());
+		holder.time.setText(TimeUtil.getInstance().formatLong(
+				withdrawaData.getCreateTime(), TimeUtil.DATE_PATTERN_6));
 		holder.name.setText(withdrawaData.getPayer());
 		return arg1;
 	}

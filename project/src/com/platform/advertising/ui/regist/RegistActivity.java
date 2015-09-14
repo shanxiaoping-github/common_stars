@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.platform.advertising.R;
 import com.platform.advertising.framework.MyBaseActivity;
@@ -47,6 +48,11 @@ public class RegistActivity extends MyBaseActivity implements OnClickListener {
 	
 	@ID(value=R.id.edtCode,isBindListener = true)
 	private EditText edtCode;
+	
+	@ID(value = R.id.regist_agreement,isBindListener = true)
+	private TextView regist_agreement;
+	
+	
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
@@ -59,7 +65,18 @@ public class RegistActivity extends MyBaseActivity implements OnClickListener {
 		case R.id.btnCode:
 			getCode();
 			break;
+		case R.id.regist_agreement:
+			regist_agreement();
+			break;
 		}
+	}
+	
+	/**
+	 *  注册协议
+	 */
+	private void regist_agreement(){
+		openActivity(RegistGreenMentActivity.class);
+		
 	}
 
 	/**

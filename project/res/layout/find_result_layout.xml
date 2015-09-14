@@ -23,13 +23,12 @@
             android:src="@drawable/top_back_ground" />
     </RelativeLayout>
 
-    <ListView
-        android:layout_marginTop="5dp"
-        android:id="@+id/find_result_listview"
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/find_result_pullrefreshlistview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
         android:divider="@color/emptyColor"
-        android:dividerHeight="2dip" >
-    </ListView>
+        android:dividerHeight="5dip" />
 
 </LinearLayout>

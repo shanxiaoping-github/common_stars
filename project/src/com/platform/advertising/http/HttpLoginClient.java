@@ -1,9 +1,5 @@
 package com.platform.advertising.http;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import sxp.android.framework.util.JsonUtil;
 
 /**
  * 登陆client

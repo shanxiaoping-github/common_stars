@@ -23,6 +23,7 @@ import com.platform.advertising.UserInfo;
 import com.platform.advertising.UserInfoDao.Properties;
 import com.platform.advertising.framework.MyBaseActivity;
 import com.platform.advertising.http.HttpPersonInformationClient;
+import com.platform.advertising.http.HttpUserInfoClient;
 import com.platform.advertising.sqlite.GreenDaoService;
 import com.platform.advertising.ui.adapter.AgeAdapter;
 import com.platform.advertising.ui.adapter.JobAdapter;
@@ -192,7 +193,7 @@ public class MaterialActivity extends MyBaseActivity {
 			savaInfoClient.setPramas(new Object[] {
 					SharedPreferencesUtil.getString("mobile"), areaId,
 					provinceId, cityId, sexId, ageId, ageName, jobId, jobName,
-					isNetId, isMarryId
+					isNetId, isMarryId,provinceName,cityName,areaName
 
 			});
 			ShowUtil.openHttpDialog("信息保存中...");
@@ -398,40 +399,108 @@ public class MaterialActivity extends MyBaseActivity {
 						.getString("mobile"))).list();
 		if (list != null && list.size() > 0) {
 			UserInfo userInfo = list.get(0);
-			sexId = userInfo.getSex();
-			isSex();
-
-			ageId = userInfo.getAgeId();
-			ageName = userInfo.getAgeName();
-			ageBtn.setText(ageName);
-
-			jobId = userInfo.getJobId();
-			jobName = userInfo.getJobName();
-			jobBtn.setText(jobName);
-
-			provinceId = userInfo.getProvinceId();
-			provinceName = userInfo.getProvinceName();
-			province.setText(provinceName);
-
-			cityId = userInfo.getCityId();
-			cityName = userInfo.getCityName();
-			city.setText(cityName);
-
-			areaId = userInfo.getAreaId();
-			areaName = userInfo.getAreaName();
-			areas.setText(areaName);
-
-			isNetId = userInfo.getIsNetShoping();
-			isnet();
-
-			isMarryId = userInfo.getIsMarry();
-			ismarry();
+			setUserInfo(userInfo);
 		} else {
-			sexId = "male";
-			isNetId = "1";
-			isMarryId = "1";
+			getUserInfo();
+			
 		}
+	}
 
+	/**
+	 * 设置用户信息
+	 * 
+	 * @param userInfo
+	 */
+	private void setUserInfo(UserInfo userInfo) {
+		sexId = userInfo.getSex();
+		isSex();
+
+		ageId = userInfo.getAgeId();
+		ageName = userInfo.getAgeName();
+		ageBtn.setText(ageName);
+
+		jobId = userInfo.getJobId();
+		jobName = userInfo.getJobName();
+		jobBtn.setText(jobName);
+
+		provinceId = userInfo.getProvinceId();
+		provinceName = userInfo.getProvinceName();
+		province.setText(provinceName);
+
+		cityId = userInfo.getCityId();
+		cityName = userInfo.getCityName();
+		city.setText(cityName);
+
+		areaId = userInfo.getAreaId();
+		areaName = userInfo.getAreaName();
+		areas.setText(areaName);
+
+		isNetId = userInfo.getIsNetShoping();
+		isnet();
+
+		isMarryId = userInfo.getIsMarry();
+		ismarry();
+	}
+	/**
+	 * 获取用户信息
+	 */
+	private void getUserInfo(){
+		final HttpUserInfoClient client = new HttpUserInfoClient();
+		client.addAsynHcResponseListenrt(new AsynHcResponseListener() {
+			
+			@Override
+			public boolean onTimeout() {
+				// TODO Auto-generated method stub
+				ShowUtil.closeHttpDialog();
+				sexId = "male";
+				isNetId = "1";
+				isMarryId = "1";
+				return false;
+			}
+			
+			@Override
+			public boolean onSuccess(BaseAsynHttpClient asynHttpClient) {
+				// TODO Auto-generated method stub
+				ShowUtil.closeHttpDialog();
+				if(client.isSuccess()){
+					UserInfo userInfo = client.getUserInfo().copyUserInfo();
+					QueryBuilder<UserInfo> qb = GreenDaoService
+							.getInstance().getDaoSession()
+							.getUserInfoDao().queryBuilder();
+
+					DeleteQuery<UserInfo> db = qb.where(
+							Properties.UserId.eq(userInfo
+									.getUserId())).buildDelete();
+
+					db.executeDeleteWithoutDetachingEntities();
+
+					GreenDaoService.getInstance().getDaoSession()
+							.getUserInfoDao().insert(userInfo);
+					setUserInfo(userInfo);
+				}else{
+					sexId = "male";
+					isNetId = "1";
+					isMarryId = "1";
+				}
+				return false;
+			}
+			
+			@Override
+			public boolean onEmpty() {
+				// TODO Auto-generated method stub
+				ShowUtil.closeHttpDialog();
+				sexId = "male";
+				isNetId = "1";
+				isMarryId = "1";
+				return false;
+			}
+		});
+		client.setPramas(new Object[]{
+				SharedPreferencesUtil.getString("mobile")
+		});
+		ShowUtil.openHttpDialog("用户信息获取中...");
+		client.submitRequest();
+		
 	}
 
 }

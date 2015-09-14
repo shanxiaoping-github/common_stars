@@ -28,14 +28,14 @@ public class HttpgetMessageListClient extends HttpAdvertisingClient {
 	protected String[] getContentPramasKeys() {
 		// TODO Auto-generated method stub
 		return new String[] {
-				"mobile"
-				//"pageNumber","pageSize"
+				"mobile",
+				"pageNumber","pageSize"
 		};
 	}
 	
 	private ArrayList<MessageData> list;
 	@Override
-	protected void parserMessage(String data) {
+	protected void parserMessage(String data){
 		// TODO Auto-generated method stub
 		super.parserMessage(data);
 		if(!StringUtil.isJsonEmpty(data)){

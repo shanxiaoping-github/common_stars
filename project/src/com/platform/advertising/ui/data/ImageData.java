@@ -38,6 +38,8 @@ public class ImageData implements BaseData{
 		updateTime = JsonUtil.getJsonString(jo,"updateTime");
 	}
 
+	
+	
 	public JSONObject page() {
 		// TODO Auto-generated method stub
 		return null;

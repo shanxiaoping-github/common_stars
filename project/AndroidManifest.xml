@@ -61,10 +61,11 @@
         <activity android:name=".ui.home.AccountActivity" />
         <activity android:name=".ui.home.FindActivity" />
         <activity android:name=".ui.regist.ForgetPassWord" />
+        <activity android:name=".ui.regist.RegistGreenMentActivity" />
         <activity android:name=".ui.find.FindResultActivity" />
         <activity android:name=".ui.find.CompanyDetailActivity" />
         <activity android:name=".ui.CitySelectActivity" />
-        <activity android:name=".ui.data.UploadDataActivity" />
+        <activity android:name=".ui.UploadDataActivity" />
         <!-- <activity android:name=".ui.AdvertisingMarketActivity" /> -->
         <activity android:name=".ui.AdvertisingMarketDetailActivity" />
         <activity android:name=".ui.AnswerStartActivity" />

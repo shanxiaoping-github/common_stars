@@ -18,6 +18,37 @@ import com.platform.advertising.ui.data.AdverTitleData;
  * @author shanxiaoping
  */
 public class AdvertTitleView extends LinearLayout {
+	/**
+	 * 点击选中响应接口
+	 * @author shanxiaoping
+	 *
+	 */
+	
+	public static interface SelectListener{
+		public void action(Object...objects);
+	}
+	private SelectListener actionListen = null;
+	
+	
+	public SelectListener getActionListen() {
+		return actionListen;
+	}
+
+	public void setActionListern(SelectListener actionListen) {
+		this.actionListen = actionListen;
+	}
+	
+	private int index;
+	
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
 	public AdvertTitleView(Context context, AdverTitleData adverTitleData) {
 		super(context);
 		setOrientation(LinearLayout.VERTICAL);
@@ -29,6 +60,7 @@ public class AdvertTitleView extends LinearLayout {
 
 	// 广告数据
 	private AdverTitleData adverTitleData;
+	
 
 	public void initView(AdverTitleData adverTitleData) {
 		this.adverTitleData = adverTitleData;
@@ -59,6 +91,10 @@ public class AdvertTitleView extends LinearLayout {
 											.getDrawable(
 													R.drawable.item_selector));
 						}
+						if(actionListen!=null){
+							actionListen.action(new Object[]{index});
+						}
+						
 						aView.setBackgroundResource(R.color.answer_checked);
 						adverTitleData.setIsView(aView);
 
@@ -103,6 +139,9 @@ public class AdvertTitleView extends LinearLayout {
 						adverTitleData.getIsView().setBackground(
 								SXPApplication.getAppContext().getResources()
 										.getDrawable(R.drawable.item_selector));
+					}
+					if(actionListen!=null){
+						actionListen.action(new Object[]{index});
 					}
 					bView.setBackgroundResource(R.color.answer_checked);
 					adverTitleData.setIsView(bView);
@@ -150,6 +189,9 @@ public class AdvertTitleView extends LinearLayout {
 								SXPApplication.getAppContext().getResources()
 										.getDrawable(R.drawable.item_selector));
 					}
+					if(actionListen!=null){
+						actionListen.action(new Object[]{index});
+					}
 					cView.setBackgroundResource(R.color.answer_checked);
 					adverTitleData.setIsView(cView);
 
@@ -193,6 +235,9 @@ public class AdvertTitleView extends LinearLayout {
 						adverTitleData.getIsView().setBackground(
 								SXPApplication.getAppContext().getResources()
 										.getDrawable(R.drawable.item_selector));
+					}
+					if(actionListen!=null){
+						actionListen.action(new Object[]{index});
 					}
 					dView.setBackgroundResource(R.color.answer_checked);
 					adverTitleData.setIsView(dView);
@@ -240,6 +285,9 @@ public class AdvertTitleView extends LinearLayout {
 								SXPApplication.getAppContext().getResources()
 										.getDrawable(R.drawable.item_selector));
 					}
+					if(actionListen!=null){
+						actionListen.action(new Object[]{index});
+					}
 					eView.setBackgroundResource(R.color.answer_checked);
 					adverTitleData.setIsView(eView);
 
@@ -283,6 +331,9 @@ public class AdvertTitleView extends LinearLayout {
 						adverTitleData.getIsView().setBackground(
 								SXPApplication.getAppContext().getResources()
 										.getDrawable(R.drawable.item_selector));
+					}
+					if(actionListen!=null){
+						actionListen.action(new Object[]{index});
 					}
 					fView.setBackgroundResource(R.color.answer_checked);
 					adverTitleData.setIsView(fView);

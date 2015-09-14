@@ -5,6 +5,7 @@ import com.platform.advertising.ui.CitySelectActivity;
 import com.platform.advertising.ui.find.FindResultActivity;
 import com.platform.advertising.view.city.data.Area;
 
+import sxp.android.framework.application.SXPApplication;
 import sxp.android.framework.ui.BaseActivity;
 import sxp.android.framework.ui.BaseFragment;
 import android.content.Intent;
@@ -47,6 +48,17 @@ public class FindFragment extends BaseFragment implements OnClickListener {
 		city.setOnClickListener(this);
 		areas.setOnClickListener(this);
 		
+		//地区初始化
+		province.setText((String)SXPApplication.getInstance().getSXPConfigurationContext().getData("selectProvince"));
+		provinceId = (String)SXPApplication.getInstance().getSXPConfigurationContext().getData("selectProvinceId");
+		
+		
+		city.setText((String)SXPApplication.getInstance().getSXPConfigurationContext().getData("selectCity"));
+		cityId = (String)SXPApplication.getInstance().getSXPConfigurationContext().getData("selectCityId");
+		
+		areas.setText((String)SXPApplication.getInstance().getSXPConfigurationContext().getData("selectArea"));
+		areasId = (String)SXPApplication.getInstance().getSXPConfigurationContext().getData("selectAreaId");
+		
 		return view;
 
 	}
@@ -84,14 +96,21 @@ public class FindFragment extends BaseFragment implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		if (data != null) {
+			
 			province.setText(data.getStringExtra("selectProvince"));
 			provinceId = data.getStringExtra("selectProvinceId");
+			SXPApplication.getInstance().getSXPConfigurationContext().savaData("selectProvince", province.getText().toString());
+			SXPApplication.getInstance().getSXPConfigurationContext().savaData("selectProvinceId",provinceId);
 			
 			city.setText(data.getStringExtra("selectCity"));
 			cityId = data.getStringExtra("selectCityId");
+			SXPApplication.getInstance().getSXPConfigurationContext().savaData("selectCity", city.getText().toString());
+			SXPApplication.getInstance().getSXPConfigurationContext().savaData("selectCityId",cityId);
 			
 			areas.setText(data.getStringExtra("selectArea"));
 			areasId = data.getStringExtra("selectAreaId");
+			SXPApplication.getInstance().getSXPConfigurationContext().savaData("selectArea", areas.getText().toString());
+			SXPApplication.getInstance().getSXPConfigurationContext().savaData("selectAreaId",areasId);
 			
 		}
 	}

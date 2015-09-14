@@ -4,17 +4,45 @@
     android:layout_height="wrap_content"
     android:background="@drawable/item_selector"
     android:orientation="horizontal"
-    
-     >
+    android:padding="10dp" >
 
-    <TextView
-        android:id="@+id/company_item_title"
-        style="@style/ordinary_font"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="北京时代引擎 "
-        android:textColor="@color/shallowGray" />
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/company_item_title"
+            style="@style/ordinary_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北京时代引擎 "
+            android:textColor="@color/shallowGray" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-4dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/product_ic_address" />
+
+            <TextView
+                android:id="@+id/company_item_adress"
+                style="@style/normal_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-2dp"
+                android:maxLength="30"
+                android:text="湖南株洲攸县露天"
+                android:textColor="@color/lightGray" />
+        </LinearLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="0dip"

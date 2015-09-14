@@ -31,7 +31,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="全部提交"
+            android:text="提交"
             android:textColor="@drawable/text_white_orange_select_color" />
     </RelativeLayout>
 
@@ -45,13 +45,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TextView
+                android:textColor="@color/lightGray"
+                style="@style/ordinary_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="上传营业执照" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/advert_number_bj" >
 
                 <ImageView
@@ -351,9 +360,9 @@
                     android:layout_height="100dp"
                     android:background="@color/white"
                     android:gravity="top"
-                    android:hint="请输入您的公司或业务介绍，过往业绩..."
+                    android:hint="公司简介及关键字...50字以内"
                     android:lines="3"
-                    android:maxLength="120"
+                    android:maxLength="50"
                     android:padding="10dip"
                     android:textColor="@color/shallowGray"
                     android:textColorHint="@color/hintColor" />

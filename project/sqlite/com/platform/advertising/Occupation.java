@@ -169,7 +169,6 @@ public class Occupation implements BaseData {
 		}
 		if(occList.size() > 0){
 			list = occList;
-			
 		}
 		
 	}

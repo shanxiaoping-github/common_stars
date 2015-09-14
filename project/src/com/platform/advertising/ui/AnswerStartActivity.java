@@ -26,6 +26,7 @@ import com.platform.advertising.ui.data.AdvertisingData;
 import com.platform.advertising.util.SharedPreferencesUtil;
 import com.platform.advertising.util.ShowUtil;
 import com.platform.advertising.view.city.AdvertTitleView;
+import com.platform.advertising.view.city.AdvertTitleView.SelectListener;
 
 /**
  * 
@@ -128,12 +129,25 @@ public class AnswerStartActivity extends MyBaseActivity implements
 		for (int i = 0; i < list.size(); i++) {
 			AdverTitleData adverTitleData = list.get(i);
 			AdvertTitleView titleView = new AdvertTitleView(this,adverTitleData);
+			titleView.setIndex(i);
+			titleView.setActionListern(new SelectListener() {
+				
+				@Override
+				public void action(Object... objects) {
+					// TODO Auto-generated method stub
+					int index = (Integer)objects[0];
+					if(index!=list.size()-1){
+						nextTitle();
+					}
+				}
+			});
 			viewList.add(titleView);
 		}
 		tvTitle.setText(list.get(0).getTopicName());
 		titleNumber.setText("Q1");
 	}
 	private void initViewPage(){
+		
 		viewPager.setAdapter(new PagerAdapter() {
 
 			@Override
@@ -170,6 +184,12 @@ public class AnswerStartActivity extends MyBaseActivity implements
 				tvTitle.setText(list.get(arg0).getTopicName());
 				int number = arg0+1;
 				titleNumber.setText("Q"+number);
+				if(arg0==list.size()-1){
+					tvNextAnswer.setVisibility(View.GONE);
+				}else{
+					tvNextAnswer.setVisibility(View.VISIBLE);
+				}
+				currentIndex = arg0;
 
 			}
 			

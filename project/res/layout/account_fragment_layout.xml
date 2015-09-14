@@ -14,14 +14,14 @@
             android:text="账户余额" />
 
         <TextView
-            android:id="@+id/account_fragment_withdrawal"
+            android:id="@+id/account_fragment_change"
             style="@style/normal_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dip"
-            android:text="提现"
+            android:text="修改"
             android:textColor="@drawable/text_white_orange_select_color" />
 
         <ImageButton
@@ -74,14 +74,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="10dp" >
+            android:orientation="horizontal" >
 
-            <TextView
+            <EditText
                 android:id="@+id/account_fragment_blance"
                 style="@style/ordinary_font"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/emptyColor"
+                android:enabled="false"
+                android:padding="10dp"
+                android:singleLine="true"
                 android:text="15555555元"
                 android:textColor="@color/shallowGray" />
 
@@ -139,12 +142,15 @@
             android:layout_height="2dip"
             android:background="@color/baseColor" />
 
-        <TextView
+        <EditText
             android:id="@+id/account_fragment_zfb_account"
             style="@style/ordinary_font"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/emptyColor"
+            android:enabled="false"
             android:padding="10dp"
+            android:singleLine="true"
             android:text="xiaoping.shan@foxmail.com"
             android:textColor="@color/shallowGray" />
     </LinearLayout>
@@ -194,12 +200,15 @@
             android:layout_height="2dip"
             android:background="@color/baseColor" />
 
-        <TextView
+        <EditText
             android:id="@+id/account_fragment_realname"
             style="@style/ordinary_font"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/emptyColor"
+            android:enabled="false"
             android:padding="10dp"
+            android:singleLine="true"
             android:text="单小萍"
             android:textColor="@color/shallowGray" />
     </LinearLayout>
@@ -210,15 +219,41 @@
         android:background="@color/diverGray" />
 
     <TextView
+        android:id="@+id/account_fragment_withdrawal"
+        style="@style/ordinary_font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dip"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:text="提现申请"
+        android:textColor="@drawable/text_orange_blue_select_color" />
+
+    <TextView
         android:id="@+id/record"
         style="@style/normal_font"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
+        android:paddingBottom="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingTop="5dp"
-        android:text="查看你的提现记录..."
+        android:text="提现记录..."
         android:textColor="@drawable/text_blue_orange_select_color" />
+
+    <Button
+        android:id="@+id/account_fragment_submit"
+        style="@style/ordinary_font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/orange_btn_back_ground"
+        android:padding="10dp"
+        android:text="提交"
+        android:textColor="@drawable/text_white_orange_select_color"
+        android:visibility="gone" />
 
 </LinearLayout>

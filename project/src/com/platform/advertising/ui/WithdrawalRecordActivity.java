@@ -1,35 +1,39 @@
 package com.platform.advertising.ui;
 
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ListView;
-
-import com.platform.advertising.R;
-import com.platform.advertising.http.HttpWithdrawaRecordClient;
-import com.platform.advertising.ui.adapter.WithdrawaRecordAdapter;
-import com.platform.advertising.util.SharedPreferencesUtil;
-import com.platform.advertising.util.ShowUtil;
-
 import sxp.android.framework.annotation.ID;
 import sxp.android.framework.annotation.LAYOUT;
 import sxp.android.framework.http.BaseAsynHttpClient;
 import sxp.android.framework.http.BaseAsynHttpClient.AsynHcResponseListener;
 import sxp.android.framework.ui.BaseActivity;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ListView;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.platform.advertising.R;
+import com.platform.advertising.http.HttpWithdrawaRecordClient;
+import com.platform.advertising.ui.adapter.WithdrawaRecordAdapter;
+import com.platform.advertising.util.SharedPreferencesUtil;
+import com.platform.advertising.util.ShowUtil;
 /**
  * 提现记录
  * @author shanxiaoping
  *
  */
 @LAYOUT(R.layout.withdrawal_record_layout)
-public class WithdrawalRecordActivity extends BaseActivity{
+public class WithdrawalRecordActivity extends BaseActivity implements OnRefreshListener<ListView>,OnLastItemVisibleListener{
 	@ID(value = R.id.back,isBindListener = true)
     private ImageButton back;
 	
 	@ID(value = R.id.listview)
-	private ListView listView;
-    
+	private PullToRefreshListView listView;
     
     private WithdrawaRecordAdapter withrecordAdapter;
+    
+    private int currentPage;
     
     @Override
     protected void layout() {
@@ -37,12 +41,15 @@ public class WithdrawalRecordActivity extends BaseActivity{
     	super.layout();
     	withrecordAdapter = new WithdrawaRecordAdapter();
     	withrecordAdapter.setContext(this);
-    	listView.setAdapter(withrecordAdapter);
-    	loadData();
+    	listView.getRefreshableView().setAdapter(withrecordAdapter);
+    	listView.setOnRefreshListener(this);
+    	listView.setOnLastItemVisibleListener(this);
+    	currentPage=1;
+    	loadData(currentPage,0);
   
     }
     
-    private void loadData(){
+    private void loadData(int page,final int state){
     	final HttpWithdrawaRecordClient client = new HttpWithdrawaRecordClient();
     	client.addAsynHcResponseListenrt(new AsynHcResponseListener() {
 			
@@ -50,6 +57,7 @@ public class WithdrawalRecordActivity extends BaseActivity{
 			public boolean onTimeout() {
 				// TODO Auto-generated method stub
 				ShowUtil.closeHttpDialog();
+				listView.onRefreshComplete();
 				showShortToast("获取失败");
 
 				return false;
@@ -59,12 +67,18 @@ public class WithdrawalRecordActivity extends BaseActivity{
 			public boolean onSuccess(BaseAsynHttpClient asynHttpClient) {
 				// TODO Auto-generated method stub
 				ShowUtil.closeHttpDialog();
+				listView.onRefreshComplete();
 				if(client.getList()!=null){
-					withrecordAdapter.setList(client.getList());
+					if(state==0){
+						withrecordAdapter.setList(client.getList());
+					}else if(state==1){
+						withrecordAdapter.getList().addAll(client.getList());
+						currentPage++;
+					}
 					withrecordAdapter.notifyDataSetChanged();
 					
-				}else{
-					showShortToast("获取失败");
+				}else if(state==1){
+					showShortToast("没有更多数据");
 
 				}
 				return false;
@@ -74,15 +88,18 @@ public class WithdrawalRecordActivity extends BaseActivity{
 			public boolean onEmpty() {
 				// TODO Auto-generated method stub
 				ShowUtil.closeHttpDialog();
+				listView.onRefreshComplete();
 				showShortToast("获取失败");
 				return false;
 			}
 		});
     	client.setPramas(new Object[]{
-    			"1","10",SharedPreferencesUtil.getString("mobile")
+    			page,"10",SharedPreferencesUtil.getString("mobile")
     			
     	});
-    	ShowUtil.openHttpDialog("获取中...");
+    	if(state==1){
+    		ShowUtil.openHttpDialog("获取中...");
+    	}
     	client.submitRequest();
     	
     }
@@ -97,4 +114,18 @@ public class WithdrawalRecordActivity extends BaseActivity{
 			break;
 		}
     }
+
+	@Override
+	public void onLastItemVisible() {
+		// TODO Auto-generated method stub
+		int nextPage = currentPage++;
+    	loadData(nextPage,1);
+	}
+
+	@Override
+	public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+		// TODO Auto-generated method stub
+		currentPage=1;
+    	loadData(currentPage,0);
+	}
 }

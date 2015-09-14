@@ -46,6 +46,30 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/normal_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="您的位置 :"
+            android:textColor="@color/blue" />
+
+        <TextView
+            android:id="@+id/activity_location_infomation"
+            style="@style/normal_font"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="20dp"
+            android:text="纬度123，经度345，天心区贺龙体育馆"
+            android:textColor="@color/orange" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/lLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

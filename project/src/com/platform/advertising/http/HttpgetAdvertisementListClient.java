@@ -22,7 +22,12 @@ public class HttpgetAdvertisementListClient extends HttpAdvertisingClient{
 	@Override
 	protected String[] getContentPramasKeys() {
 		// TODO Auto-generated method stub
-		return null;
+		return new String[]{
+				
+				"pageNumber",
+				"pageSize"  
+
+		};
 	}
 	
 	@Override

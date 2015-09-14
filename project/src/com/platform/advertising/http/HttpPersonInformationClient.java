@@ -23,8 +23,11 @@ public class HttpPersonInformationClient extends HttpAdvertisingClient{
 				"jobId",
 				"jobName",
 				"onlineShopping",
-				"isMarry"
+				"isMarry",
 				
+				"provinceName",
+				"cityName",
+				"districtName"
 		};
 	}
 }

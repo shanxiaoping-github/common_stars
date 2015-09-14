@@ -34,14 +34,14 @@
             android:src="@drawable/advert_ic_answer" />
     </RelativeLayout>
 
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:layout_marginTop="5dp"
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:cacheColorHint="@color/emptyColor"
         android:divider="@color/baseColor"
-        android:dividerHeight="4dp" >
-    </ListView>
+        android:dividerHeight="5dp"/>
+    
 
 </LinearLayout>

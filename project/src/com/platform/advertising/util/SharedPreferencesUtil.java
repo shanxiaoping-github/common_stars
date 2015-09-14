@@ -106,7 +106,7 @@ public class SharedPreferencesUtil
 	 */
 	public static String getString(String key)
 	{
-		return preferences.getString(key, null);
+		return preferences.getString(key,"");
 	}
 
 	/*清空*/

@@ -29,11 +29,13 @@ public class AdvertisingData implements BaseData {
 	private String createTime;
 	// 标题
 	private String title;
-
 	// imageList
 	private ArrayList<ImageData> imageList;
+	// imagePath
+	private String imagePath;
 	// company
 	private CompanyData company;
+	
 
 	public void parser(JSONObject jo) {
 		// TODO Auto-generated method stub
@@ -42,6 +44,7 @@ public class AdvertisingData implements BaseData {
 		id = JsonUtil.getJsonString(jo, "id");
 		createTime = JsonUtil.getJsonString(jo, "createTime");
 		title = JsonUtil.getJsonString(jo, "title");
+		imagePath = JsonUtil.getJsonString(jo,"imagePath");
 		
 		String imageListStr = JsonUtil.getJsonString(jo, "imageList");
 		if(!StringUtil.isJsonEmpty(imageListStr)){
@@ -121,6 +124,16 @@ public class AdvertisingData implements BaseData {
 	public void setCompany(CompanyData company) {
 		this.company = company;
 	}
+	
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 	public static ArrayList<AdvertisingData> getList(String jsonStr){
 		ArrayList<AdvertisingData> list = new ArrayList<AdvertisingData>();
 		try {
